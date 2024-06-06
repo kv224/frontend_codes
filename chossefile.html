@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Picker with Password</title>
+    <style>
+        /* Styling for the password popup */
+        #password-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Password Popup -->
+<div id="password-popup">
+    <h3>Please enter the password:</h3>
+    <input type="password" id="password">
+    <button id="submit-password">Submit</button>
+</div>
+
+
+
+<!-- File Picker -->
+<input type="file" id="file-picker" style="display: none;">
+<button id="open-file-picker">Choose File</button>
+
+<script>
+    const passwordPopup = document.getElementById('password-popup');
+    const passwordInput = document.getElementById('password');
+    const submitPasswordButton = document.getElementById('submit-password');
+    const filePicker = document.getElementById('file-picker');
+    const openFilePickerButton = document.getElementById('open-file-picker');
+
+    // Display the password popup
+    openFilePickerButton.addEventListener('click', () => {
+        passwordPopup.style.display = 'block';
+    });
+
+    // Check the entered password
+    submitPasswordButton.addEventListener('click', () => {
+        const enteredPassword = passwordInput.value;
+        if (enteredPassword === '123') {
+            passwordPopup.style.display = 'none';
+            filePicker.click(); // Trigger the file picker
+        } else {
+            alert('Incorrect password. Please try again.');
+        }
+    });
+
+    // Triggered when a file is selected
+    filePicker.addEventListener('change', (event) => {
+        const selectedFile = event.target.files[0];
+        if (selectedFile) {
+            alert(`You selected the file: ${selectedFile.name}`);
+        }
+    });
+</script>
+
+</body>
+</html>
