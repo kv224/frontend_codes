@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #contentSection {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        #contentSection p {
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+
+        button {
+            margin: 10px;
+        }
+    </style>
+    <title>Collapsible Content</title>
+</head>
+<body>
+    <button id="toggleButton">Toggle Content</button>
+    <div id="contentSection">
+        <p>This is the content that can be collapsed or expanded.</p>
+    </div>
+
+    <script>
+        const toggleButton = document.getElementById('toggleButton');
+        const contentSection = document.getElementById('contentSection');
+
+        toggleButton.addEventListener('click', () => {
+            if (contentSection.style.maxHeight) {
+                contentSection.style.maxHeight = null;
+            } else {
+                contentSection.style.maxHeight = contentSection.scrollHeight + 'px';
+            }
+        });
+    </script>
+</body>
+</html>
