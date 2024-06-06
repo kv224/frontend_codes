@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>jQuery Slide Left and Right Toggle Effect</title>
+<script
+  src="https://code.jquery.com/jquery-3.7.0.min.js"
+  integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+  crossorigin="anonymous"></script> 
+<style>
+    .box{
+        float:left;
+        overflow: hidden;
+        background: #f0e68c;
+    }
+    /* Add padding and border to inner content
+    for better animation effect */
+    .box-inner{
+        width: 400px;
+        padding: 10px;
+        border: 1px solid #a29415;
+    }
+</style>
+</head>
+<body>
+    <button type="button" class="slide-toggle">Slide Toggle</button>
+    <hr>
+    <div class="box">
+        <div class="box-inner">Lorem ipsum dolor sit amet...</div>
+    </div>
+    <script>
+        $(document).ready(function(){
+  $(".slide-toggle").click(function(){
+    $(".box").animate({
+      width: "toggle"
+    });
+  });
+});
+    </script>
+</body>
+</html>

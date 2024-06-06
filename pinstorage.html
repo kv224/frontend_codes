@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>localStorage Button</title>
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
+</head>
+<body>
+
+<button id="toggleButton" onclick="toggleLocalStorage()">Toggle localStorage</button>
+
+<div id="myDiv" class="hidden">This div has a hidden class</div>
+
+<script>
+// Function to toggle localStorage value and show alerts
+function toggleLocalStorage() {
+    if(localStorage.getItem('myValue') === null) {
+        localStorage.setItem('myValue', 'false');
+        alert("localStorage value set to false");
+    } else {
+        var currentValue = localStorage.getItem('myValue');
+        var newValue = currentValue === 'true' ? 'false' : 'true';
+        localStorage.setItem('myValue', newValue);
+        if(newValue === 'true') {
+            alert("localStorage value set to true");
+        } else {
+            alert("localStorage value set to false");
+            // Remove the 'hidden' class from the div
+            document.getElementById('myDiv').classList.remove('hidden');
+            // Store the state of the class in localStorage
+            localStorage.setItem('myDivHidden', 'false');
+        }
+    }
+}
+
+// Call toggleLocalStorage function on page load only if the localStorage value is not null
+window.onload = function() {
+    if(localStorage.getItem('myValue') !== null) {
+        // Only call toggleLocalStorage if the localStorage value exists
+        toggleLocalStorage();
+        // Check if the class should be hidden based on localStorage
+        if(localStorage.getItem('myDivHidden') === 'false') {
+            document.getElementById('myDiv').classList.remove('hidden');
+        }
+    }
+};
+</script>
+
+</body>
+</html>

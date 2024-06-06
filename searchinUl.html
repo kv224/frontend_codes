@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<input type="text" id="searchInput" placeholder="Search for myclass...">
+<ul id="myclassList">
+  <li class="myclass">Coffee</li>
+  <li class="myclass">Tea</li>
+  <li>
+    <ul>
+      <li class="myclass">Coffee</li>
+      <li class="myclass">Tea</li>
+      <li>
+        <ul>
+          <li class="myclass">Coffee</li>
+          <li class="myclass">Milkoo</li>
+          <li class="myclass">Milk</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<script> 
+// Get the input field and the list
+const input = document.getElementById('searchInput');
+const myclassList = document.getElementById('myclassList');
+
+// Add an event listener to the input field
+input.addEventListener('input', searchFunction);
+
+function searchFunction() {
+  // Get the search query from the input field
+  const searchQuery = input.value.toLowerCase();
+
+  // Get all elements with class "myclass"
+  const myclassItems = myclassList.getElementsByClassName('myclass');
+
+  // Loop through the myclass items and hide those that don't match the search query
+  for (let item of myclassItems) {
+    const text = item.textContent.toLowerCase();
+    if (text.includes(searchQuery)) {
+      item.style.display = 'list-item';
+    } else {
+      item.style.display = 'none';
+    }
+  }
+}
+
+
+</script>
+
+</body>
+</html>

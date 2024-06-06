@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Toggle Arrow with Sliding Text</title>
+  <style>
+    .toggle-container {
+      display: inline-block;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .toggle-arrow {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      text-align: center;
+      border: 1px solid #000;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .toggle-text {
+      display: inline-block;
+      background-color: #f0f0f0;
+      padding: 5px;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+      transform: translateX(100%);
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    .toggle-text.visible {
+      opacity: 1;
+      transform: translateX(100%);
+    }
+
+    .expanded {
+      transform: rotate(-180deg);
+    }
+  </style>
+</head>
+<body>
+  <div class="toggle-container">
+    <div class="toggle-arrow" id="toggleArrow">></div>
+    <div class="toggle-text" id="toggleText">Hidden Text</div>
+  </div>
+
+  <script>
+    const toggleContainer = document.querySelector('.toggle-container');
+    const toggleArrow = document.getElementById('toggleArrow');
+    const toggleText = document.getElementById('toggleText');
+
+    let isExpanded = false;
+
+    toggleContainer.addEventListener('click', () => {
+      if (isExpanded) {
+        toggleText.classList.remove('visible');
+        toggleArrow.classList.remove('expanded');
+      } else {
+        toggleText.classList.add('visible');
+        toggleArrow.classList.add('expanded');
+      }
+      isExpanded = !isExpanded;
+    });
+  </script>
+</body>
+</html>

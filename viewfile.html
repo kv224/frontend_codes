@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Uploaded Text File</title>
+</head>
+<body>
+    <h1>View Uploaded Text File</h1>
+    <input type="file" id="fileInput">
+    <button id="loadButton">Load Text File</button>
+    <div id="fileContent"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const fileInput = document.getElementById("fileInput");
+            const loadButton = document.getElementById("loadButton");
+            const fileContent = document.getElementById("fileContent");
+
+            loadButton.addEventListener("click", function () {
+                const selectedFile = fileInput.files[0];
+
+                if (selectedFile) {
+                    const reader = new FileReader();
+
+                    reader.onload = function (event) {
+                        // Display the text file content in the div
+                        fileContent.textContent = event.target.result;
+                    };
+
+                    // Read the selected file as text
+                    reader.readAsText(selectedFile);
+                } else {
+                    alert("Please select a file.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

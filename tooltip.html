@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap 5 Tooltip Example</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" >
+</head>
+<body>
+<style>
+    .custom-tooltip {
+  --bs-tooltip-bg: var(--bd-violet-bg);inset: -25px auto 0px auto;
+  --bs-tooltip-color: var(--bs-white);
+  
+}
+</style>
+<div class="container mt-5">
+    <h1>Bootstrap 5 Tooltip Example</h1>
+    <button type="button" class="btn btn-secondary"
+        data-bs-toggle="tooltip" data-bs-placement="top"
+        data-bs-custom-class="custom-tooltip"
+        data-bs-title="This top tooltip is themed via CSS variables.">
+  Custom tooltip
+</button>
+    <!-- Button with Tooltip -->
+    <button type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" title="This is a tooltip">Hover me</button>
+</div>
+
+<!-- Include Bootstrap JS and Popper.js (required for tooltips) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" ></script>
+<script>
+    
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+</script>
+</body>
+</html>

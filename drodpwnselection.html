@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dropdown Selection</title>
+</head>
+<body>
+    <h1>Select and Display Dropdown Items</h1>
+
+    <!-- Dropdown menu -->
+    <select id="mydropdown">
+        <option value="item1">Item 1</option>
+        <option value="item2">Item 2</option>
+        <option value="item3">Item 3</option>
+        <option value="item4">Item 4</option>
+    </select>
+
+    <!-- Button to add selected items -->
+    <button id="myaddButton">Add Selected Item</button>
+
+    <!-- Display selected items here -->
+    <div id="selectedItems">
+        <h2>Selected Items:</h2>
+        <ul id="selectedList">
+        </ul>
+    </div>
+    <input type="text" id="searchInput" placeholder="Search" oninput="filterList()" />
+<div class="image-label-list">
+    <div class="image-label-item">banana</div>
+    <div class="image-label-item">mango</div>
+    <div class="image-label-item">banananana</div>
+    <div class="image-label-item">apple</div>
+</div>
+    <script>
+        function filterList() {
+    var input = document.getElementById('searchInput');
+    var filter = input.value.toLowerCase();
+    var items = document.querySelectorAll('.image-label-item');
+
+    items.forEach(function(item) {
+        var text = item.textContent.toLowerCase();
+        if (text.includes(filter)) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+    </script>
+
+    <script>
+        const selectedItems = new Set(); // Use a Set to store selected items
+        
+        // Add selected items to the list and prevent duplicates
+        document.getElementById("myaddButton").addEventListener("click", function () {
+            const dropdown = document.getElementById("mydropdown");
+            const selectedOption = dropdown.options[dropdown.selectedIndex];
+
+            if (selectedItems.has(selectedOption.value)) {
+                alert("This item has already been selected.");
+            } else {
+                // Add the item to the Set to prevent duplicates
+                selectedItems.add(selectedOption.value);
+
+                // Create a list item and add it to the list
+                const listItem = document.createElement("li");
+                listItem.textContent = selectedOption.text;
+                document.getElementById("selectedList").appendChild(listItem);
+            }
+        });
+    </script>
+</body>
+</html>

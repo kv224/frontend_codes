@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Organization Chart with jsPlumb</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsPlumb/2.15.6/js/jsplumb.min.js"></script>
+<style>
+    .person {
+        width: 100px;
+        height: 50px;
+        background-color: lightblue;
+        border: 1px solid #ccc;
+        text-align: center;
+        line-height: 50px;
+        position: absolute;
+        cursor: pointer;
+    }
+
+    #org-chart {
+        position: relative;
+        margin-top: 50px;
+        width: 100%;
+        height: 100vh;
+    }
+</style>
+</head>
+<body>
+
+<div id="org-chart">
+    <div class="person" id="ceo">CEO</div>
+    <div class="person" id="manager-a">Manager A</div>
+    <div class="person" id="manager-b">Manager B</div>
+
+    <div class="person" id="employee-1">Employee 1</div>
+    <div class="person" id="employee-2">Employee 2</div>
+    <div class="person" id="employee-3">Employee 3</div>
+    <div class="person" id="employee-4">Employee 4</div>
+</div>
+
+<script>
+$(document).ready(function() {
+    jsPlumb.ready(function() {
+        jsPlumb.setContainer($("#org-chart"));
+
+        jsPlumb.connect({
+            source: "ceo",
+            target: "manager-a",
+            endpoint: "Blank",
+            anchor: "Continuous",
+            overlays: [["Arrow", { width: 10, length: 10, location: 1, foldback: 0.8 }]]
+        });
+
+        jsPlumb.connect({
+            source: "ceo",
+            target: "manager-b",
+            endpoint: "Blank",
+            anchor: "Continuous",
+            overlays: [["Arrow", { width: 10, length: 10, location: 1, foldback: 0.8 }]]
+        });
+
+        jsPlumb.connect({
+            source: "manager-a",
+            target: "employee-1",
+            endpoint: "Blank",
+            anchor: "Continuous",
+            overlays: [["Arrow", { width: 10, length: 10, location: 1, foldback: 0.8 }]]
+        });
+
+        jsPlumb.connect({
+            source: "manager-a",
+            target: "employee-2",
+            endpoint: "Blank",
+            anchor: "Continuous",
+            overlays: [["Arrow", { width: 10, length: 10, location: 1, foldback: 0.8 }]]
+        });
+
+        jsPlumb.connect({
+            source: "manager-b",
+            target: "employee-3",
+            endpoint: "Blank",
+            anchor: "Continuous",
+            overlays: [["Arrow", { width: 10, length: 10, location: 1, foldback: 0.8 }]]
+        });
+
+        jsPlumb.connect({
+            source: "manager-b",
+            target: "employee-4",
+            endpoint: "Blank",
+            anchor: "Continuous",
+            overlays: [["Arrow", { width: 10, length: 10, location: 1, foldback: 0.8 }]]
+        });
+
+        jsPlumb.draggable($(".person"), {
+            containment: "parent"
+        });
+    });
+});
+</script>
+
+</body>
+</html>

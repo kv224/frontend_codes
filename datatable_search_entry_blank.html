@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataTables Example</title>
+    
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Include DataTables CSS and JavaScript -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Add styles for the scrollable body here */
+        .datatable_scrollBody {
+            max-height: 50vh; /* Adjust the max height as needed */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Sample DataTable</h2>
+        <table id="example" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>City</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                <tr><td>John Doe</td><td>30</td><td>New York</td>
+                    <tr><td>John Doe</td><td>30</td><td>New York</td>
+                </tr> <tr><td>Jane Smith</td> <td>25</td> <td>Los Angeles</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+       $(document).ready(function() {
+            $('#example').DataTable({
+                "scrollY": "200px" // Adjust the height as needed
+            });
+        });
+    </script>
+</body>
+</html>

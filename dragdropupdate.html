@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <style>
+    .main-wrap{
+      display: grid;
+      grid-template-columns: 15% 85%;
+    }
+    #left-section, #right-section {
+      height: 300px;
+      border: 1px solid #ccc;
+      float: left;
+      margin: 10px;
+      box-sizing: border-box;
+      padding: 10px;
+    }
+    #right-section {
+      height: 300px;
+      border: 1px solid #ccc;
+      overflow-x: scroll;
+      margin: 10px;
+      position: relative;
+      overflow-y: hidden;
+      display: flex;
+    }
+    .draggable-item {
+    width: 100%;
+    background-color: #b4beff;
+    margin-bottom: 10px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 12px;
+    box-sizing: border-box;
+    padding: 10px;
+    max-width: 200px;
+}
+    .droppable-box {
+      width: 220px;
+      height: 230px;
+      border: 1px solid #ccc;
+      margin: 10px;
+      position: relative;
+      display: inline-block;
+      vertical-align: top;
+      text-align: center;
+      padding: 10px;
+      min-width: 181px;
+    }
+    .remove-button {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      cursor: pointer;
+    }
+    .droppable-area {
+      position: relative; /* Change to relative */
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .posrela{
+        position: relative !important;
+    }
+    /* width */
+    #right-section::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    }
+
+    /* Track */
+    #right-section::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 5px;
+    }
+
+    /* Handle */
+    #right-section::-webkit-scrollbar-thumb {
+    background: rgb(120, 96, 228); 
+    border-radius: 5px;
+    }
+
+    /* Handle on hover */
+    #right-section::-webkit-scrollbar-thumb:hover {
+    background: #4b0f0f; 
+    }
+  </style>
+</head>
+<body>
+
+<div class="main-wrap">
+    <div id="left-section">
+        <div class="draggable-item">Item 1</div>
+        <div class="draggable-item">Item 2</div>
+        <div class="draggable-item">Item 3</div>
+      </div>
+      
+      <div id="right-section">
+          <div class="droppable-box">
+            <div class="droppable-area">
+              <!-- Droppable area 1 -->
+            </div>
+          </div>
+          
+          <div class="droppable-box">
+            <div class="droppable-area">
+              <!-- Droppable area 2 -->
+            </div>
+          </div>
+          <div class="droppable-box">
+            <div class="droppable-area">
+              <!-- Droppable area 2 -->
+            </div>
+          </div>
+          <div class="droppable-box">
+            <div class="droppable-area">
+              <!-- Droppable area 2 -->
+            </div>
+          </div>
+          <div class="droppable-box">
+            <div class="droppable-area">
+              <!-- Droppable area 2 -->
+            </div>
+          </div>
+          <div class="droppable-box">
+            <div class="droppable-area">
+              <!-- Droppable area 2 -->
+            </div>
+          </div>
+          <div class="droppable-box">
+            <div class="droppable-area">
+              <!-- Droppable area 2 -->
+            </div>
+          </div>
+          <div class="droppable-box">
+            <div class="droppable-area">
+              <!-- Droppable area 2 -->
+            </div>
+          </div>
+          <div class="droppable-box">
+            <div class="droppable-area">
+              <!-- Droppable area 2 -->
+            </div>
+          </div>
+          <div class="droppable-box">
+            <div class="droppable-area">
+              <!-- Droppable area 2 -->
+            </div>
+          </div>
+          <div class="droppable-box">
+            <div class="droppable-area">
+              <!-- Droppable area 2 -->
+            </div>
+          </div>
+          <div class="droppable-box">
+            <div class="droppable-area">
+              <!-- Droppable area 2 -->
+            </div>
+          </div>
+          <div class="droppable-box">
+            <div class="droppable-area">
+              <!-- Droppable area 2 -->
+            </div>
+          </div>
+          <!-- Add more droppable boxes as needed -->
+        </div>
+</div>
+
+<script>
+  $(function() {
+    $(".draggable-item").draggable({
+      helper: "clone"
+    });
+
+    $(".droppable-area").droppable({
+      accept: ".draggable-item",
+      drop: function(event, ui) {
+        var clone = ui.helper.clone();
+        clone.removeClass("ui-draggable-dragging");
+
+        var itemCount = $(this).children(".draggable-item").length;
+        var rowHeight = 10; // Adjust this value to set the height between rows
+
+        clone.css({
+          top: itemCount * rowHeight,
+          left: 0,
+          position: "absolute",
+        });
+
+        var removeButton = $("<span class='remove-button'>X</span>");
+        removeButton.click(function() {
+          var $removedItem = $(this).closest(".draggable-item");
+          $removedItem.remove();
+
+          // Rearrange the positions of remaining boxes
+          $(this)
+            .closest(".droppable-area")
+            .find(".draggable-item")
+            .each(function(index) {
+              $(this).css("top", index * rowHeight);
+            });
+        });
+
+        clone.append(removeButton);
+        clone.addClass("posrela");
+        $(this).append(clone);
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

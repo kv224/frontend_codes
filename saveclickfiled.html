@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup Example</title>
+    <style>
+        /* Styles for the popup */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="openPopup()">Open Popup</button>
+
+    <!-- The Popup -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <h2>Enter a Number:</h2>
+            <input type="text" id="numberInput">
+            <button onclick="closePopup()">Save</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to open the popup
+        function openPopup() {
+            document.getElementById("popup").style.display = "block";
+        }
+
+        // Function to close the popup if input is a number
+        function closePopup() {
+            const inputField = document.getElementById("numberInput");
+            const inputValue = inputField.value;
+            
+            if (!isNaN(inputValue)) {
+                // Input is a number, close the popup
+                document.getElementById("popup").style.display = "none";
+            } else {
+                // Input is not a number, show an alert
+                alert("Please enter a valid number.");
+            }
+        }
+    </script>
+</body>
+</html>

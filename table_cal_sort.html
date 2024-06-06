@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Range Filter in DataTable with Calendar</title>
+    
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+    <!-- Include DataTables CSS and JS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    
+    <!-- Include moment.js for datetime parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+    <!-- Include date range picker -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker@3.1.0/daterangepicker.css" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker@3.1.0/daterangepicker.min.js"></script>
+</head>
+<body>
+
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Start Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Tiger Nixon</td>
+            <td>System Architect</td>
+            <td>Edinburgh</td>
+            <td>61</td>
+            <td>2011-04-25 08:00:00</td>
+        </tr>
+        <!-- Add more rows as needed -->
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function() {
+        // Initialize DataTable
+        var table = $('#example').DataTable({
+            "columnDefs": [
+                { "type": "date", "targets": [4] } // Set the date type for the 5th column (Start Date)
+            ]
+        });
+
+        // Add date range filter with calendar
+        $('#daterange').daterangepicker({
+            autoUpdateInput: false,
+            opens: 'left',
+            locale: {
+                format: 'YYYY-MM-DD HH:mm:ss',
+                cancelLabel: 'Clear'
+            }
+        });
+
+        // Apply the selected date range to DataTable
+        $('#daterange').on('apply.daterangepicker', function(ev, picker) {
+            $('#min').val(picker.startDate.format('YYYY-MM-DD HH:mm:ss'));
+            $('#max').val(picker.endDate.format('YYYY-MM-DD HH:mm:ss'));
+            table.draw();
+        });
+
+        // Clear the date range filter
+        $('#daterange').on('cancel.daterangepicker', function() {
+            $('#min').val('');
+            $('#max').val('');
+            table.draw();
+        });
+    });
+</script>
+
+</body>
+</html>

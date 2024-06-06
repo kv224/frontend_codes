@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save Cookie Value</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+</head>
+<body>
+    <h1>Save Cookie Value</h1>
+    <button id="saveCookieBtn">Save Cookie</button>
+
+    <script>
+        $(document).ready(function(){
+            $("#saveCookieBtn").click(function(){
+                // Generate a random value or use any predefined value
+                var cookieValue = Math.random().toString(36).substring(7); // Example: Random alphanumeric value
+                // Save the value as a cookie named "myCookie" that expires in 7 days
+                $.cookie('myCookie', cookieValue, { expires: 7 });
+                alert("Cookie saved successfully!");
+            });
+        });
+    </script>
+</body>
+</html>

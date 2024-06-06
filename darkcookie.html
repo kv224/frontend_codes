@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theme Switcher</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+  :root,
+  :root.light {
+    --bg-color: #fff;
+    --text-color: #123;
+  }
+
+  :root.dark {
+    --bg-color: #121212;
+    --text-color: #45ADFE;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2.5rem 0;
+    height: 100vh;
+    box-sizing: border-box;
+  }
+
+  h1 {
+    text-align: center;
+    font-weight: normal;
+  }
+
+  .toggle-container {
+    position: relative;
+  }
+
+  .theme-btn {
+    width: 6em;
+    height: 6em;
+    padding: 0.5em;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+  }
+
+  .theme-btn img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .theme-btn.light {
+    display: none;
+  }
+
+  .dark .theme-btn.dark {
+    display: none;
+  }
+
+  .dark .theme-btn.light {
+    display: block;
+  }
+
+  footer {
+    text-align: center;
+    padding: 0.5rem 0;
+    background-color: #eaeaea90;
+  }
+
+  footer p {
+    font-size: 0.75rem;
+    margin: 0.25rem 0;
+    color: #221133;
+  }
+
+  footer a {
+    text-decoration: none;
+    color: inherit;
+  }
+</style>
+</head>
+<body>
+<main class="container">
+  <h1>Click the icon to switch between light and dark mode</h1>
+  <div class="toggle-container">
+    <button class="theme-btn light" onclick="setTheme('light')" title="Light mode">
+      <img src="https://assets.codepen.io/210284/sun.png" alt="sun">
+    </button>
+    <button class="theme-btn dark" onclick="setTheme('dark')" title="Dark mode">
+      <img src="https://assets.codepen.io/210284/moon.png" alt="moon">
+    </button>
+  </div>
+</main>
+
+<footer>
+  <p>
+    Pen by <a href="https://www.jemimaabu.com" target="_blank">Jemima Abu</a><span style="color: #D11E15"> &#9829;</span>
+  </p>
+</footer>
+
+<script>
+function setTheme(theme) {
+  document.documentElement.className = theme;
+  setCookie('theme', theme, 365); // Set the theme preference as a cookie with a one-year expiration
+}
+
+function setCookie(name, value, days) {
+  const expires = new Date();
+  expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+  document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+}
+
+function getCookie(name) {
+  const cookieValue = document.cookie.match(`(^|;)\\s*${name}=([^;]+)`);
+  return cookieValue ? cookieValue.pop() : null;
+}
+
+// Check if a theme is already set in the cookie when the page loads
+window.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = getCookie('theme');
+  if (savedTheme) {
+    setTheme(savedTheme);
+  }
+});
+</script>
+</body>
+</html>
