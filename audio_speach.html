@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Speech</title>
+</head>
+<body>
+    <div>
+        <button id="speak-button">Speak</button>
+    </div>
+
+    <audio id="audio-player" src="siren.mp3"></audio>
+
+    <script>
+        const speakButton = document.getElementById('speak-button');
+        const audioPlayer = document.getElementById('audio-player');
+
+        function speakStaticText() {
+            const text = "Hi, this is Robo";
+            if (text && window.speechSynthesis) {
+                const speechSynthesis = window.speechSynthesis;
+                const speechUtterance = new SpeechSynthesisUtterance(text);
+
+                // Optional: You can set speech options such as pitch and rate.
+                // speechUtterance.pitch = 1;
+                // speechUtterance.rate = 1;
+
+                // Play the audio file first.
+                audioPlayer.play();
+
+                // Wait for the audio to finish playing before triggering text-to-speech.
+                audioPlayer.addEventListener('ended', () => {
+                    speechSynthesis.speak(speechUtterance);
+                });
+            } else {
+                alert("Text-to-speech is not supported in your browser.");
+            }
+        }
+
+        speakButton.addEventListener('click', speakStaticText);
+    </script>
+</body>
+</html>
+semco@1
