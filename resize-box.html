@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resizable Box with Highcharts</title>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<style>
+    #box {
+        width: 400px;
+        height: 300px;
+        border: 1px solid #000;
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        background-color: #fff;
+        z-index: 9999;
+    }
+    #box-header {
+        background-color: #ccc;
+        padding: 5px;
+        cursor: move;
+    }
+    #close-icon {
+        float: right;
+        cursor: pointer;
+    }
+    #chart-container {
+        width: 100%;
+        height: calc(100% - 30px); /* Adjust according to header height */
+    }
+</style>
+<script>
+$(function() {
+    $("#box").resizable({
+        handles: "n, e, s, w, ne, se, sw, nw",
+        minWidth: 200,
+        minHeight: 150,
+        resize: function(event, ui) {
+            // Resize chart when box is resized
+            chart.setSize(ui.size.width, ui.size.height - $("#box-header").outerHeight());
+        }
+    }).draggable({
+        containment: "parent",
+        scroll: false // Prevent scrolling while dragging
+    });
+    
+    // Close box functionality
+    $("#close-icon").click(function() {
+        $("#box").hide();
+    });
+    
+    // Highcharts initialization
+    var chart = Highcharts.chart('chart-container', {
+        chart: {
+            type: 'spline'
+        },
+        title: {
+            text: 'Example Chart'
+        },
+        series: [{
+            data: [1, 3, 2, 4, 5, 3, 6, 7, 5]
+        }]
+    });
+
+    // Add the additional Highcharts script here
+    Highcharts.addEvent(Highcharts.Series, 'addPoint', e => {
+        const point = e.point,
+            series = e.target;
+        console.log("addEvent x:" + point.x + ", y:" + point.y);
+        if (!series.pulse) {
+            series.pulse = series.chart.renderer.circle()
+                .add(series.markerGroup);
+        }
+        setTimeout(() => {
+            series.pulse
+                .attr({
+                    x: series.xAxis.toPixels(point.x, true),
+                    y: series.yAxis.toPixels(point.y, true),
+                    r: series.options.marker.radius,
+                    opacity: 1,
+                    fill: series.color
+                })
+                .animate({
+                    r: 20,
+                    opacity: 0
+                }, {
+                    duration: 1000
+                });
+        }, 1);
+    });
+
+});
+</script>
+</head>
+<body>
+<div id="box">
+    <div id="box-header">
+        Box
+        <span id="close-icon">X</span>
+    </div>
+    <div id="chart-container"></div>
+</div>
+</body>
+</html>

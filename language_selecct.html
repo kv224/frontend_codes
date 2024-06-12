@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Language Dropdown</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .dropbtn img.flag {
+            margin-right: 8px;
+        }
+
+        .dropbtn .arrow {
+            margin-left: auto;
+            width: 0; 
+            height: 0; 
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid white;
+            transition: transform 0.3s ease;
+        }
+
+        .dropbtn.active .arrow {
+            transform: rotate(180deg);
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid white;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            border-radius: 4px;
+            z-index: 1;
+            margin-top: 5px;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 10px 16px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .flag {
+            width: 20px;
+            height: 14px;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dropdown">
+        <button class="dropbtn" id="selectedLanguageBtn">
+            <img src="https://t4.ftcdn.net/jpg/03/39/09/99/360_F_339099984_R4HvOWAhrmfJELwxCR6gQuZTvITN8kLP.jpg" alt="Select Language" class="flag" id="selectedFlag">
+            Select Language
+            <div class="arrow"></div>
+        </button>
+        <div class="dropdown-content">
+            <a href="#" onclick="selectLanguage('English', 'https://www.shutterstock.com/image-vector/united-kingdom-flag-great-britain-260nw-609480755.jpg')">
+                <img src="https://www.shutterstock.com/image-vector/united-kingdom-flag-great-britain-260nw-609480755.jpg" alt="English" class="flag"> English
+            </a>
+            <a href="#" onclick="selectLanguage('Chinese', 'https://www.shutterstock.com/image-vector/vector-illustration-flag-china-260nw-115565827.jpg')">
+                <img src="https://www.shutterstock.com/image-vector/vector-illustration-flag-china-260nw-115565827.jpg" alt="Chinese" class="flag"> Chinese
+            </a>
+            <a href="#" onclick="selectLanguage('Korean', 'https://cdn.britannica.com/49/1949-004-8818300C/Flag-South-Korea.jpg')">
+                <img src="https://cdn.britannica.com/49/1949-004-8818300C/Flag-South-Korea.jpg" alt="Korean" class="flag"> Korean
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('.dropbtn').addEventListener('click', function() {
+            this.classList.toggle('active');
+            var dropdownContent = document.querySelector('.dropdown-content');
+            if (dropdownContent.style.display === 'block') {
+                dropdownContent.style.display = 'none';
+            } else {
+                dropdownContent.style.display = 'block';
+            }
+        });
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn') && !event.target.closest('.dropdown-content')) {
+                var dropdowns = document.getElementsByClassName('dropdown-content');
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === 'block') {
+                        openDropdown.style.display = 'none';
+                        document.querySelector('.dropbtn').classList.remove('active');
+                    }
+                }
+            }
+        }
+
+        function selectLanguage(language, flagSrc) {
+            const selectedLanguageBtn = document.getElementById('selectedLanguageBtn');
+            // Update the button text and flag
+            selectedLanguageBtn.innerHTML = `<img src="${flagSrc}" alt="${language}" class="flag"> ${language} <div class="arrow"></div>`;
+            document.querySelector('.dropdown-content').style.display = 'none';
+            document.querySelector('.dropbtn').classList.remove('active');
+
+            // Alert message based on selected language
+            if (language === 'English') {
+                alert('English selected');
+            } else if (language === 'Chinese') {
+                alert('Chinese selected');
+            } else if (language === 'Korean') {
+                alert('Korean selected');
+            }
+        }
+    </script>
+</body>
+</html>
